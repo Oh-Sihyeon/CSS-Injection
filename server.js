@@ -1,28 +1,28 @@
-//1. index.html에 css 취약점 코드 작성 
-    //=> 관건: 속성 값으로 플래그를 집어넣어놓을 건데, 어떻게 집어넣는가?
-        //=> 
-//2. 공격자는 자기 서버 페이지를 만들어서, 자기 페이지로 flag값을 읽어오기
-
 const express = require('express');
-const nunjucks = require('nunjucks');
+const path = require('path');
+const app = express();
+const port = 3000;
 
-const app = express()
+// Set EJS as the templating engine
+app.set('view engine', 'ejs');
+app.set('views', path.join(__dirname, 'views'));
 
-// 뷰 엔진 설정
-app.set('view engine', 'html');
-nunjucks.configure('./views', {
-    express: app,
-    watch: true
-});
+// Serve static files
+app.use(express.static(path.join(__dirname, 'public')));
 
+// Body parser middleware
 app.use(express.urlencoded({ extended: true }));
 
-// 홈페이지
 app.get('/', (req, res) => {
-    res.render('index.html');
+  res.sendFile(path.join(__dirname, 'views', 'index.html'));
 });
 
-// 서버 리스닝
-app.listen(8080, () => {
-    console.log('Server is running on port 8080');
+app.post('/flag', (req, res) => {
+  const { message } = req.body;
+  res.render('flag', { message });
+});
+
+// Start the server
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
 });

