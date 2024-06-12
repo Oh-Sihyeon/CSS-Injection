@@ -1,28 +1,30 @@
 const express = require('express');
-const path = require('path');
+const bodyParser = require('body-parser');
+const { adminCredentials } = require('./models/account.js');
+const { flag } = require('./models/flag.js');
 const app = express();
 const port = 3000;
 
-// Set EJS as the templating engine
 app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// Serve static files
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Body parser middleware
-app.use(express.urlencoded({ extended: true }));
+const id = `${adminCredentials.username}`
+const pw = `${adminCredentials.password}`
+const message = `${id} : ${pw}`
 
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'views', 'index.html'));
+  res.render('index', { message });
 });
 
-app.post('/flag', (req, res) => {
-  const { message } = req.body;
-  res.render('flag', { message });
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  if (username === id && password === pw) {
+    res.render('flag', { flag });
+  } else {
+    res.send('Invalid credentials');
+  }
 });
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
