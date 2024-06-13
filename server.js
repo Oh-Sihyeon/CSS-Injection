@@ -8,12 +8,12 @@ const port = 3000;
 app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const id = `${adminCredentials.username}`
-const pw = `${adminCredentials.password}`
-const message = `${id} : ${pw}`
+const id = adminCredentials.username
+const pw = adminCredentials.password
+const account = `${encodeURIComponent(id)}:${encodeURIComponent(pw)}`;
 
 app.get('/', (req, res) => {
-  res.render('index', { message });
+  res.render('index', { account });
 });
 
 app.post('/login', (req, res) => {
