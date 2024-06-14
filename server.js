@@ -10,10 +10,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const id = adminCredentials.username
 const pw = adminCredentials.password
-const account = `${encodeURIComponent(id)}:${encodeURIComponent(pw)}`;
 
 app.get('/', (req, res) => {
-  res.render('index', { account });
+  res.render('index', { id, pw });
 });
 
 app.post('/login', (req, res) => {
@@ -21,7 +20,7 @@ app.post('/login', (req, res) => {
   if (username === id && password === pw) {
     res.render('flag', { flag });
   } else {
-    res.send('Invalid credentials');
+    res.render('error', {message: 'Invalid credentials'});
   }
 });
 

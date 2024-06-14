@@ -1,6 +1,6 @@
 const adminCredentials = {
   username: 'admin',
-  password: 'admin'
+  password: 'adminsupersecretcode'
 };
 
 module.exports = { adminCredentials };
